@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Kokoro for Zotero Read Aloud",
+  "version": "0.1.0",
+  "description": "Manage custom pronunciation rules for a local or self-hosted Kokoro TTS server used with Zotero Read Aloud.",
+  "author": "Laura Baird / Hermes",
+  "applications": {
+    "zotero": {
+      "id": "kokoro-pronunciations@xamspanda.github.io",
+      "strict_min_version": "10.0",
+      "strict_max_version": "19.*",
+      "update_url": "https://raw.githubusercontent.com/xamspanda/zotero-kokoro-tts/main/updates.json"
+    }
+  }
+}

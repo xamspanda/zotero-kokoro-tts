@@ -1,0 +1,10 @@
+# Build artifacts
+*.xpi
+
+# OS junk
+.DS_Store
+__MACOSX/
+
+# Editor
+*.swp
+*~

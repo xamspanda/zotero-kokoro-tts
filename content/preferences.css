@@ -1,0 +1,268 @@
+#kokoro-pronunciation-pane .kokoro-page {
+  max-width: 980px;
+  padding: 12px 16px 28px;
+}
+
+#kokoro-pronunciation-pane h2 {
+  margin: 0 0 2px;
+  font-size: 1.25em;
+}
+
+#kokoro-pronunciation-pane .kokoro-muted {
+  color: #666;
+  margin: 2px 0 12px;
+}
+
+#kokoro-pronunciation-pane .kokoro-section {
+  margin: 14px 0;
+  padding: 12px 14px;
+  -moz-box-align: stretch;
+}
+
+/* Make HTML block children of XUL groupboxes span the full content width. */
+#kokoro-pronunciation-pane .kokoro-section > html|div {
+  width: 100%;
+  -moz-box-flex: 1;
+}
+
+#kokoro-pronunciation-pane .kokoro-section > caption {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+#kokoro-pronunciation-pane .kokoro-row,
+#kokoro-pronunciation-pane .kokoro-toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Server row: label + URL (grows) + button group. Uses flex so that on
+   narrow widths the button group wraps below the URL as a unit, instead of
+   each button stacking on its own full-width line. */
+#kokoro-pronunciation-pane .kokoro-server-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+#kokoro-pronunciation-pane .kokoro-server-row .kokoro-url {
+  flex: 1 1 280px;
+}
+
+#kokoro-pronunciation-pane .kokoro-server-actions {
+  display: flex;
+  gap: 8px;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+}
+
+#kokoro-pronunciation-pane .kokoro-label {
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* Add row 1: input + replacement + match selector. */
+#kokoro-pronunciation-pane .kokoro-add-grid {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(220px, 1fr) 160px;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Add row 2: voice label + voice picker + action buttons. */
+#kokoro-pronunciation-pane .kokoro-action-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+#kokoro-pronunciation-pane .kokoro-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 30px;
+  padding: 4px 8px;
+}
+
+#kokoro-pronunciation-pane .kokoro-url {
+  min-width: 280px;
+}
+
+/* XUL menulist: give it a consistent height and sensible width. */
+#kokoro-pronunciation-pane .kokoro-menulist {
+  min-height: 30px;
+}
+
+#kokoro-pronunciation-pane .kokoro-add-grid .kokoro-menulist {
+  width: 100%;
+}
+
+#kokoro-pronunciation-pane .kokoro-voice {
+  min-width: 200px;
+}
+
+#kokoro-pronunciation-pane #kokoro-pron-audio {
+  display: none;
+}
+
+/* Uniform button sizing so rows line up cleanly. */
+#kokoro-pronunciation-pane html|button {
+  white-space: nowrap;
+  height: 30px;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+#kokoro-pronunciation-pane html|button:hover:not([disabled]) {
+  filter: brightness(1.08);
+}
+
+#kokoro-pronunciation-pane html|button[disabled] {
+  opacity: 0.55;
+  cursor: default;
+}
+
+#kokoro-pronunciation-pane html|button.kokoro-busy {
+  cursor: progress;
+}
+
+#kokoro-pronunciation-pane html|button.kokoro-danger {
+  color: #b3261e;
+}
+
+#kokoro-pronunciation-pane .kokoro-toolbar {
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
+/* ---- Rules grid ----
+   HTML <table> inside a XUL <groupbox> does not stretch and its rows are
+   re-laid-out by XUL box layout, which kept headers from sitting over their
+   data. A CSS grid is immune to that: one grid, every cell a direct child. */
+#kokoro-pronunciation-pane .kokoro-grid {
+  display: grid;
+  grid-template-columns: 64px 18% 1fr 14% 10% 132px;
+  align-items: center;
+  width: 100%;
+  -moz-box-flex: 1;
+  margin-top: 6px;
+}
+
+#kokoro-pronunciation-pane .kokoro-grid-head {
+  font-weight: 600;
+  padding: 6px 10px;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.4);
+  white-space: nowrap;
+  align-self: stretch;
+  display: flex;
+  align-items: flex-end;
+}
+
+#kokoro-pronunciation-pane .kokoro-cell {
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.28);
+  overflow-wrap: anywhere;
+  min-height: 22px;
+  display: flex;
+  align-items: center;
+}
+
+#kokoro-pronunciation-pane .kokoro-col-on,
+#kokoro-pronunciation-pane .kokoro-grid-head.kokoro-col-on {
+  justify-content: center;
+  text-align: center;
+}
+
+#kokoro-pronunciation-pane .kokoro-col-actions,
+#kokoro-pronunciation-pane .kokoro-grid-head.kokoro-col-actions {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* Empty-state spans all columns. */
+#kokoro-pronunciation-pane .kokoro-grid-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  padding: 14px 8px;
+}
+
+/* ---- Toggle switch (class-driven; no native checkbox) ---- */
+#kokoro-pronunciation-pane .kokoro-switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  border-radius: 22px;
+  background: rgba(128, 128, 128, 0.45);
+  cursor: pointer;
+  transition: background 0.18s ease;
+  flex: none;
+}
+
+#kokoro-pronunciation-pane .kokoro-switch.kokoro-switch-on {
+  background: #1b7f3b;
+}
+
+#kokoro-pronunciation-pane .kokoro-knob {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease;
+}
+
+#kokoro-pronunciation-pane .kokoro-switch.kokoro-switch-on .kokoro-knob {
+  transform: translateX(16px);
+}
+
+#kokoro-pronunciation-pane .kokoro-actions html|button {
+  padding: 0 8px;
+  margin-left: 6px;
+}
+
+/* Toast: transient, color-coded, slides into the bottom-right of the pane. */
+#kokoro-pronunciation-pane .kokoro-toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  max-width: 420px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.92em;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 9999;
+}
+
+#kokoro-pronunciation-pane .kokoro-toast-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#kokoro-pronunciation-pane .kokoro-toast-success { background: #1b7f3b; }
+#kokoro-pronunciation-pane .kokoro-toast-warning { background: #9a6700; }
+#kokoro-pronunciation-pane .kokoro-toast-error   { background: #c0392b; }
+#kokoro-pronunciation-pane .kokoro-toast-info    { background: #34597a; }
+
+@media (max-width: 900px) {
+  #kokoro-pronunciation-pane .kokoro-add-grid {
+    grid-template-columns: 1fr;
+  }
+  #kokoro-pronunciation-pane .kokoro-label {
+    text-align: left;
+  }
+}

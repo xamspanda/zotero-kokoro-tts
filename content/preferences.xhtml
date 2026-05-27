@@ -1,0 +1,62 @@
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      id="kokoro-pronunciation-pane">
+  <html:div class="kokoro-page">
+    <groupbox class="kokoro-section">
+      <caption label="Server"/>
+      <html:div class="kokoro-row kokoro-server-row">
+        <label value="Base URL" class="kokoro-label"/>
+        <html:input id="kokoro-pron-server-url" type="text" class="kokoro-input kokoro-url"/>
+        <html:div class="kokoro-server-actions">
+          <html:button id="kokoro-pron-save-url" type="button">Save</html:button>
+          <html:button id="kokoro-pron-health" type="button">Health Check</html:button>
+          <html:button id="kokoro-pron-clear-cache" type="button">Clear Cache</html:button>
+        </html:div>
+      </html:div>
+    </groupbox>
+
+    <groupbox class="kokoro-section">
+      <caption label="Add or preview rule"/>
+      <!-- Row 1: input + replacement + match -->
+      <html:div class="kokoro-add-grid">
+        <html:input id="kokoro-pron-pattern" placeholder="Input symbol/word, e.g. C#" class="kokoro-input"/>
+        <html:input id="kokoro-pron-replacement" placeholder="Pronounce as, e.g. C Sharp" class="kokoro-input"/>
+        <menulist id="kokoro-pron-match" class="kokoro-menulist" value="literal">
+          <menupopup>
+            <menuitem value="literal" label="Literal"/>
+            <menuitem value="word" label="Whole word"/>
+            <menuitem value="regex" label="Regex"/>
+          </menupopup>
+        </menulist>
+      </html:div>
+      <!-- Row 2: voice picker + action buttons -->
+      <html:div class="kokoro-action-row">
+        <label value="Voice" class="kokoro-label"/>
+        <menulist id="kokoro-pron-voice" class="kokoro-menulist kokoro-voice">
+          <menupopup/>
+        </menulist>
+        <html:button id="kokoro-pron-preview" type="button">▶ Preview</html:button>
+        <html:button id="kokoro-pron-add" type="button">Add</html:button>
+        <html:button id="kokoro-pron-stop" type="button" hidden="hidden">■ Stop</html:button>
+      </html:div>
+      <html:audio id="kokoro-pron-audio" preload="none"></html:audio>
+    </groupbox>
+
+    <groupbox class="kokoro-section">
+      <caption label="Current rules"/>
+      <html:div class="kokoro-toolbar">
+        <html:button id="kokoro-pron-refresh" type="button">Refresh rules</html:button>
+      </html:div>
+      <html:div id="kokoro-pron-rules" class="kokoro-grid">
+        <html:div class="kokoro-grid-head kokoro-col-on">On</html:div>
+        <html:div class="kokoro-grid-head">Input</html:div>
+        <html:div class="kokoro-grid-head">Pronounce as</html:div>
+        <html:div class="kokoro-grid-head">Match</html:div>
+        <html:div class="kokoro-grid-head">Case</html:div>
+        <html:div class="kokoro-grid-head kokoro-col-actions">Actions</html:div>
+      </html:div>
+    </groupbox>
+
+    <html:div id="kokoro-pron-toast" class="kokoro-toast" role="status" aria-live="polite"></html:div>
+  </html:div>
+</vbox>
